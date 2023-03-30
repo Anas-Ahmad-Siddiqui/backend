@@ -42,7 +42,7 @@ def signup_student(request):
 
                 newUser.save()
 
-                response = HttpResponse("Successfully signed up")
+                response = HttpResponse(json.dumps({"id": newUser.id}))
                 response.status_code = 200
                 return response
 
@@ -85,7 +85,7 @@ def loginStudent(request):
             loggedUser.logStatus = True
             loggedUser.save()
 
-            response = HttpResponse(json.dumps({"logCode": logCode}))
+            response = HttpResponse(json.dumps({"id":loggedUser.id, "logCode": logCode}))
             response.status_code = 200
             return response
 
@@ -198,7 +198,7 @@ def signup_teacher(request):
 
                 newUser.save()
 
-                response = HttpResponse("Successfully signed up")
+                response = HttpResponse(json.dumps({"id": newUser.id}))
                 response.status_code = 200
                 return response
 
@@ -240,7 +240,7 @@ def loginTeacher(request):
             loggedUser.logStatus = True
             loggedUser.save()
 
-            response = HttpResponse(json.dumps({"logCode": logCode}))
+            response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
             response.status_code = 200
             return response
 
