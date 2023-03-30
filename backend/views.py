@@ -302,6 +302,7 @@ def displayTeacher(request):
             print(user[0])
 
         response = HttpResponse(userDetails)
+        # response.header("Access-Control-Allow-Origin", "true");
         response.status_code = 200
         return response
 
