@@ -20,9 +20,18 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.check),
-    path('signup/', views.signup),
-    path('login/', views.login),
-    path('logout/', views.logout),
-    path('delete/', views.delete),
-    path('display/', views.display),
+    path('signupStudent/', views.signup_student),
+    path('loginStudent/', views.loginStudent),
+    path('logoutStudent/', views.logoutStudent),
+    path('deleteStudent/', views.deleteStudent),
+    path('displaystudent/', views.displayStudent),
+    path('signupteacher/', views.signup_teacher),
+    path('loginStudent/', views.loginTeacher),
+    path('logoutTeacher/', views.logoutTeacher),
+    path('displayTeacher/', views.displayTeacher),
+    path('deleteTeacher/', views.deleteTeacher),
+    path('inClassStudent/', views.insertClassStudent),
+    path('inStudentsClass/', views.insertStudentsIntoClass),
+    path('inClassTeaher/', views.addClassToTeacher),
+    path('createClass/', views.createClass)
 ]
