@@ -412,7 +412,7 @@ def createClass(request):
 
         clas = Class()
         clas.className = className
-        clas.students = []
+        clas.students = [-1]
         clas.save()
 
         # clas = Class.objects.all().last()
