@@ -414,6 +414,8 @@ def createClass(request):
         clas.className = className
         clas.students = []
         clas.save()
+
+        clas = Class.objects.latest('pub_date')
         print(clas.classId)
         response = HttpResponse({"classId":clas.classId})
         response.status_code = 200
