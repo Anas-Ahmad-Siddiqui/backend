@@ -36,7 +36,7 @@ def signup_student(request):
                 newUser.first_name = body["first_name"]
                 newUser.last_name = body["last_name"]
                 newUser.email = body["email"]
-                newUser.classes = []
+                newUser.classes = [-1]
                 newUser.password = hashlib.sha256(
                     body["password"].encode()).hexdigest()
 
@@ -192,7 +192,7 @@ def signup_teacher(request):
                 newUser.first_name = body["first_name"]
                 newUser.last_name = body["last_name"]
                 newUser.email = body["email"]
-                newUser.classes = []
+                newUser.classes = [-1]
                 newUser.password = hashlib.sha256(
                     body["password"].encode()).hexdigest()
 
