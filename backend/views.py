@@ -359,11 +359,11 @@ def insertStudentsIntoClass(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
 
-        classID = body["class"]
-        student_emails = body["student_email"]
+        classID = body["id"]
+        usernames = body["usernames"]
 
-        for email in student_emails:
-            user = UserStudents.objects.get(email = email)
+        for username in usernames:
+            user = UserStudents.objects.get(username = username)
             user.classes = user.classes.append(classID)
             user.save()
         
