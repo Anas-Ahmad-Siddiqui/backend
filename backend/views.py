@@ -362,13 +362,18 @@ def insertStudentsIntoClass(request):
 
         classID = body["id"]
         usernames = body["usernames"]
+        clas = Class.objects.get(classId = classID)
 
         for username in usernames:
             user = UserStudents.objects.get(username = username)
             user.classes.extend([classID])
             user.save()
-        
-        response = HttpResponse("Students added")
+
+            clas.students.extend([user.id])
+
+        clas.save()
+
+        response = HttpResponse("Students added into class and Class added into students")
         response.status_code = 200
 
         return response
@@ -412,7 +417,7 @@ def createClass(request):
 
         clas = Class()
         clas.className = className
-        clas.students = [-1]
+        clas.students = [-1, -1]
         clas.save()
 
         # clas = Class.objects.all().last()
