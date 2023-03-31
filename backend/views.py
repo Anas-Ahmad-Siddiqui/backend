@@ -350,6 +350,7 @@ def insertClassStudent(request):
 
         return response
 
+
 @csrf_exempt
 def insertStudentsIntoClass(request):
     if (request.method == 'GET'):
