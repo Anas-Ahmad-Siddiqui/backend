@@ -36,7 +36,7 @@ def signup_student(request):
                 newUser.first_name = body["first_name"]
                 newUser.last_name = body["last_name"]
                 newUser.email = body["email"]
-                newUser.classes = [-1]
+                newUser.classes = [-1, -1]
                 newUser.password = hashlib.sha256(
                     body["password"].encode()).hexdigest()
 
@@ -192,7 +192,7 @@ def signup_teacher(request):
                 newUser.first_name = body["first_name"]
                 newUser.last_name = body["last_name"]
                 newUser.email = body["email"]
-                newUser.classes = [-1]
+                newUser.classes = [-1, -1]
                 newUser.password = hashlib.sha256(
                     body["password"].encode()).hexdigest()
 
@@ -340,9 +340,8 @@ def insertClassStudent(request):
 
         user = UserStudents.objects.get(username = username)
         
-        lst = user.classes
-        lst.extend(classes)
-        user.classes = lst
+        # lst = user.classes
+        user.classes.extend(classes)
 
         user.save()
 
@@ -365,7 +364,7 @@ def insertStudentsIntoClass(request):
 
         for username in usernames:
             user = UserStudents.objects.get(username = username)
-            user.classes = user.classes.append(classID)
+            user.classes.extend([classID])
             user.save()
         
         response = HttpResponse("Students added")
@@ -389,9 +388,8 @@ def addClassToTeacher(request):
         
         user = UserTeachers.objects.get(username = username)
         
-        lst = user.classes
-        lst.extend(classes)
-        user.classes = lst
+        # lst = user.classes
+        user.classes.extend(classes)
 
         user.save()
 
