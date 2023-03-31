@@ -371,6 +371,7 @@ def insertStudentsIntoClass(request):
 
             clas.students.extend([user.id])
 
+            
         clas.save()
 
         response = HttpResponse("Students added into class and Class added into students")
