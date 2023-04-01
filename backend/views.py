@@ -87,7 +87,7 @@ def loginStudent(request):
                 loggedUser.save()
 
                 print(loggedUser.values())
-                response = HttpResponse(json.dumps(loggedUser.values()))
+                response = HttpResponse(json.dumps(loggedUser.values()[0]))
                 response.status_code = 200
                 return response
 
@@ -247,7 +247,7 @@ def loginTeacher(request):
                 loggedUser.save()
 
                 # response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
-                response = HttpResponse(json.dumps(loggedUser.values()))
+                response = HttpResponse(json.dumps(loggedUser.values()[0]))
                 response.status_code = 200
                 return response
 
