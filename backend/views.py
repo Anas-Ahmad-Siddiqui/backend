@@ -48,7 +48,7 @@ def signup_student(request):
 
             else:
                 response = HttpResponse("Username already exists")
-                response.status_code = 500
+                response.status_code = 210
                 return response
 
         except Exception as e:
@@ -92,11 +92,11 @@ def loginStudent(request):
 
             else:
                 response = HttpResponse("Password doesn't match")
-                response.status_code = 500
+                response.status_code = 210
                 return response
         else:
             response = HttpResponse("User doesnt exist")
-            response.status_code = 500
+            response.status_code = 210
             return response
         
 
@@ -210,12 +210,12 @@ def signup_teacher(request):
 
             else:
                 response = HttpResponse("Username already exists")
-                response.status_code = 500
+                response.status_code = 210
                 return response
 
         except Exception as e:
             response = HttpResponse(e)
-            response.status_code = 500
+            response.status_code = 210
             return response
 
 @csrf_exempt
@@ -233,10 +233,8 @@ def loginTeacher(request):
 
         passwordHash = hashlib.sha256(password.encode()).hexdigest()
 
-        response = HttpResponse("Logged in")
-        response.status_code = 200
-
         user = UserTeachers.objects.filter(username=username).values()
+        
         if(len(user) > 0):
             password = user[0]["password"]
 
@@ -253,11 +251,11 @@ def loginTeacher(request):
 
             else:
                 response = HttpResponse("Password doesn't match")
-                response.status_code = 500
+                response.status_code = 210
                 return response
         else:
             response = HttpResponse("User doesn't exist")
-            response.status_code = 500
+            response.status_code = 210
             return response
 
 
