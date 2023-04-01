@@ -76,23 +76,29 @@ def loginStudent(request):
         response.status_code = 200
 
         user = UserStudents.objects.filter(username=username).values()
-        password = user[0]["password"]
+        if(len(user) > 0):
+            password = user[0]["password"]
 
-        if (password == passwordHash):
-            logCode = random.randint(100, 10000000)
-            loggedUser = UserStudents.objects.get(username=username)
-            loggedUser.logCode = logCode
-            loggedUser.logStatus = True
-            loggedUser.save()
+            if (password == passwordHash):
+                logCode = random.randint(100, 10000000)
+                loggedUser = UserStudents.objects.get(username=username)
+                loggedUser.logCode = logCode
+                loggedUser.logStatus = True
+                loggedUser.save()
 
-            response = HttpResponse(json.dumps({"id":loggedUser.id, "logCode": logCode}))
-            response.status_code = 200
-            return response
+                response = HttpResponse(json.dumps({"id":loggedUser.id, "logCode": logCode}))
+                response.status_code = 200
+                return response
 
+            else:
+                response = HttpResponse("Password doesn't match")
+                response.status_code = 500
+                return response
         else:
-            response = HttpResponse("Password doesn't match")
+            response = HttpResponse("User doesnt exist")
             response.status_code = 500
             return response
+        
 
 
 @csrf_exempt
@@ -231,21 +237,26 @@ def loginTeacher(request):
         response.status_code = 200
 
         user = UserTeachers.objects.filter(username=username).values()
-        password = user[0]["password"]
+        if(len(user) > 0):
+            password = user[0]["password"]
 
-        if (password == passwordHash):
-            logCode = random.randint(100, 10000000)
-            loggedUser = UserTeachers.objects.get(username=username)
-            loggedUser.logCode = logCode
-            loggedUser.logStatus = True
-            loggedUser.save()
+            if (password == passwordHash):
+                logCode = random.randint(100, 10000000)
+                loggedUser = UserTeachers.objects.get(username=username)
+                loggedUser.logCode = logCode
+                loggedUser.logStatus = True
+                loggedUser.save()
 
-            response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
-            response.status_code = 200
-            return response
+                response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
+                response.status_code = 200
+                return response
 
+            else:
+                response = HttpResponse("Password doesn't match")
+                response.status_code = 500
+                return response
         else:
-            response = HttpResponse("Password doesn't match")
+            response = HttpResponse("User doesn't exist")
             response.status_code = 500
             return response
 
