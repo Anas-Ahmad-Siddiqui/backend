@@ -86,7 +86,7 @@ def loginStudent(request):
                 loggedUser.logStatus = True
                 loggedUser.save()
 
-                response = HttpResponse(json.dumps({"id":loggedUser.id, "logCode": logCode}))
+                response = HttpResponse(loggedUser)
                 response.status_code = 200
                 return response
 
@@ -234,7 +234,7 @@ def loginTeacher(request):
         passwordHash = hashlib.sha256(password.encode()).hexdigest()
 
         user = UserTeachers.objects.filter(username=username).values()
-        
+
         if(len(user) > 0):
             password = user[0]["password"]
 
@@ -245,7 +245,8 @@ def loginTeacher(request):
                 loggedUser.logStatus = True
                 loggedUser.save()
 
-                response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
+                # response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
+                response = HttpResponse(loggedUser)
                 response.status_code = 200
                 return response
 
