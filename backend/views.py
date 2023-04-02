@@ -86,8 +86,8 @@ def loginStudent(request):
                 loggedUser.logStatus = True
                 loggedUser.save()
 
-                print(UserStudents.objects.get(username=username).values())
-                response = HttpResponse(UserStudents.objects.get(username=username).values()[0])
+                print(UserStudents.objects.filter(username=username).values()[0])
+                response = HttpResponse(UserStudents.objects.filter(username=username).values()[0])
                 # response = HttpResponse(json.dumps(loggedUser.values()[0]))
                 response.status_code = 200
                 return response
