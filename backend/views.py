@@ -86,9 +86,7 @@ def loginStudent(request):
                 loggedUser.logStatus = True
                 loggedUser.save()
 
-                print(UserStudents.objects.filter(username=username).values())
-                response = HttpResponse(UserStudents.objects.filter(username=username).values())
-                # response = HttpResponse(json.dumps(loggedUser.values()[0]))
+                response = HttpResponse(json.dumps({"logCode": loggedUser.logCode, "email": loggedUser.email, "firstName": loggedUser.first_name, "lastName": loggedUser.last_name, "id": loggedUser.id, "classes": loggedUser.classes}))
                 response.status_code = 200
                 return response
 
@@ -246,9 +244,8 @@ def loginTeacher(request):
                 loggedUser.logCode = logCode
                 loggedUser.logStatus = True
                 loggedUser.save()
-
-                # response = HttpResponse(json.dumps({"id": loggedUser.id, "logCode": logCode}))
-                response = HttpResponse(UserTeachers.objects.filter(username=username).values())
+                
+                response = HttpResponse(json.dumps({"logCode": loggedUser.logCode, "email": loggedUser.email, "firstName": loggedUser.first_name, "lastName": loggedUser.last_name, "id": loggedUser.id, "classes": loggedUser.classes}))
                 response.status_code = 200
                 return response
 
