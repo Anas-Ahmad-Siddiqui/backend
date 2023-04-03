@@ -149,3 +149,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://django-server-production-7cd2.up.railway.app",
     "https://google.com",
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    "https://django-server-production-7cd2.up.railway.app",
+    "https://google.com",
+]
