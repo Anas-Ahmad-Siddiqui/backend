@@ -144,3 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Access-Control-Allow-Origin: *
 # Access-Control-Allow-Credentials: True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://django-server-production-7cd2.up.railway.app",
+    "https://google.com",
+]
